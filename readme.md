@@ -1,7 +1,7 @@
 
 # Readme
 
-Goal:
+## Goal:
 
 To create a history mechanism to capture the changes made to properties in domain aggregates. For example, if the Customer's name changes, then we produce a history of:
 ```
@@ -10,7 +10,7 @@ Surname changed from 'Doe' to 'Smith'
 ```
 In an ideal world, each table would have its own history table behind it, but for the sake of simplicity, we can avoid that.
 
-Steps to reproduce:
+## Steps to reproduce:
 
 - Run docker-compose
 - Debug the solution
