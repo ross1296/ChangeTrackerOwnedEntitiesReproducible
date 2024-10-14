@@ -1,0 +1,29 @@
+### Create a new customer
+POST http://localhost:5247/api/User
+Content-Type: application/json
+
+{
+  "title": "Mr",
+  "forename": "John",
+  "surname": "Doe",
+  "email": "john.doe@example.com",
+  "mobilePhoneNumber": "07000000000"
+}
+
+### Get a customer by ID
+GET http://localhost:5247/api/User/{{userId}}
+
+### Update a customer
+PATCH http://localhost:5247/api/User/{{userId}}
+Content-Type: application/json
+
+{
+  "title": "Mr",
+  "forename": "John",
+  "surname": "Doe",
+  "email": "john.doe.updated@example.com",
+  "mobilePhoneNumber": "07000000000"
+}
+
+### Get all customers
+GET http://localhost:5247/api/User

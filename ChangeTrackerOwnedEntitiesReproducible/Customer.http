@@ -1,0 +1,62 @@
+### Create a new customer
+POST http://localhost:5247/api/Customer
+Content-Type: application/json
+
+{
+  "title": "Mr",
+  "forename": "John",
+  "surname": "Doe",
+  "correspondenceAddress": {
+    "addressLine1": "123 Main St",
+    "addressLine2": "Apt 4",
+    "city": "Anytown",
+    "county": "State",
+    "postcode": "12345"
+  },
+  "deliveryAddress": {
+    "addressLine1": "456 Elm St",
+    "addressLine2": null,
+    "city": "Othertown",
+    "county": "State",
+    "postcode": "67890"
+  },
+  "deliveryInstructions": "Leave at the front door",
+  "email": "john.doe@example.com",
+  "mobilePhoneNumber": "07000000000",
+  "altTelephoneNumber": "07000000000",
+  "marketingOptIn": true,
+  "welcomeCallComplete": false,
+  "smsMarketing": true
+}
+
+### Get a customer by ID
+GET http://localhost:5247/api/Customer/{{customerId}}
+
+### Update a customer
+@customerId = 3a5b4ffb-8a7c-4f34-bad7-1428450b87bc
+PATCH http://localhost:5247/api/Customer/{{customerId}}
+Content-Type: application/json
+
+{
+  "title": "Mr",
+  "forename": "John",
+  "surname": "Doe",
+  "correspondenceAddress": {
+    "addressLine1": "789 Oak St",
+    "addressLine2": "Suite 10",
+    "city": "Newtown",
+    "county": "State",
+    "postcode": "54321"
+  },
+  "deliveryAddress": null,
+  "deliveryInstructions": null,
+  "email": "john.doe.updated@example.com",
+  "mobilePhoneNumber": "07000000000",
+  "altTelephoneNumber": null,
+  "marketingOptIn": false,
+  "welcomeCallComplete": true,
+  "smsMarketing": false
+}
+
+### Get all customers
+GET http://localhost:5247/api/Customer

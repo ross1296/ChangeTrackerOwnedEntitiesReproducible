@@ -1,0 +1,44 @@
+﻿using ChangeTrackerOwnedEntitiesReproducible.Domain;
+using ChangeTrackerOwnedEntitiesReproducible.Domain.ValueObject;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace ChangeTrackerOwnedEntitiesReproducible.Infrastructure.Configurations
+{
+    internal sealed class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+    {
+        public void Configure(EntityTypeBuilder<Customer> builder)
+        {
+            builder.HasKey(u => u.Id);
+            builder.Property(x => x.Title).IsRequired(false);
+            
+            builder.Property(x => x.Forename)
+                .HasConversion(x => x!.Value, v => Name.Create(v))
+                .IsRequired();
+            
+            builder.Property(x => x.Surname)
+                .HasConversion(x => x!.Value, v => Name.Create(v))
+                .IsRequired();
+            
+            builder.OwnsOne(u => u.CorrespondenceAddress);
+            builder.OwnsOne(u => u.DeliveryAddress);
+            builder.Property(x => x.DeliveryInstructions).IsRequired(false);
+            
+            builder.Property(x => x.Email)
+                .HasConversion(x => x!.Value, v => Email.Create(v))
+                .IsRequired(false);
+            
+            builder.Property(x => x.MobilePhoneNumber)
+                .HasConversion(x => x!.Value, v => PhoneNumber.Create(v))
+                .IsRequired(false);
+            
+            builder.Property(x => x.AltTelephoneNumber)
+                .HasConversion(x => x!.Value, v => PhoneNumber.Create(v))
+                .IsRequired(false);
+            
+            builder.Property(x => x.MarketingOptIn).IsRequired();
+            builder.Property(x => x.WelcomeCallComplete).IsRequired();
+            builder.Property(x => x.SmsMarketing).IsRequired();
+        }
+    }
+}
